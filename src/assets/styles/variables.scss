@@ -1,0 +1,60 @@
+$brand: #20a0ff;
+
+$white: #ffffff;
+$black: #000000;
+$grey: #f7f8f9;
+$red: #fa0101;
+$green: #ffff00;
+$jade: #34dfa5;
+$producthunt: #ea552d;
+
+$white-grey: #f4f6fa;
+$silver-grey: #9393aa;
+$black-grey: #272755;
+$dropdown-grey: #606266;
+
+$common-link: #48576a;
+$common-link-hover: #263238;
+
+$link-title: #272755;
+$link-title-hover: $jade;
+
+$border-grey: #d1d5da;
+$border-black: #7a8ba9;
+
+$footer-grey: #969696;
+$footer-grey-bg: #eaeaea;
+
+$entry-btn-grey: #97a8be;
+$entry-btn-hover: #333333;
+
+$moudle-border-color: #d1d5da;
+$item-border-color: #e4e7ed;
+
+$panel-body-padding: 15px !default;
+//----------------------- font size -----------------------
+$font-large: 1.8rem;
+$font-medium: 1.6rem;
+$font-small: 1.4rem;
+
+//----------------------- $z-index ------------------------
+$zindex-subhead: 100;
+$zindex-mobile-search: 1000;
+$zindex-header-mobile: 2000;
+$zindex-side-nav: 2000;
+$zindex-upload-avatar: 100000;
+$zindex-quickapp-btn: 99999;
+
+//--------------------- width height ----------------------
+$mobile-screen: 960px;
+$large-screen: 1335px;
+$small-mobile-screen: 375px;
+$tiny-mobile-screen: 320px;
+$side-nav-width: 100%;
+
+$header-height: 80px;
+$header-mobile-height: 60px;
+
+$footer-height: 240px;
+$section-height: 32rem;
+$crescent-height: 10rem;

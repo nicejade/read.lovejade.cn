@@ -1,0 +1,23 @@
+{
+  "name": "read.lovejade.cn",
+  "version": "0.0.0",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build"
+  },
+  "dependencies": {
+    "axios": "^0.21.1",
+    "vue": "^3.0.4"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss7-compat": "^2.2.7",
+    "@vue/cli-plugin-typescript": "^4.5.13",
+    "@vue/compiler-sfc": "^3.0.4",
+    "autoprefixer": "^9.8.6",
+    "postcss": "^7.0.36",
+    "sass": "^1.37.5",
+    "sass-loader": "^12.1.0",
+    "tailwindcss": "npm:@tailwindcss/postcss7-compat@^2.2.7",
+    "vite": "^1.0.0-rc.13"
+  }
+}
