@@ -3,7 +3,7 @@
     <div class="lined-paper" v-show="currentSentenceStr">
       <preview-md id="sentence" :value="currentSentenceStr || '曼妙句子'" />
     </div>
-    <div class="flex flex-row justify-between mt-6">
+    <div class="flex flex-row z-10 justify-between mt-6">
       <button @click="onPreviousClick" class="bg-gray py-2 px-8 focus:outline-none text-white font-semibold rounded-full shadow-md focus:outline-none focus:ring-2 focus:ring-opacity-75">
         回退
       </button>
@@ -21,6 +21,7 @@
 import marked from './marked.esm.js'
 import PreviewMd from './markdown/PreviewMd.vue'
 import $apis from './../helper/apis.js'
+import $utils from './../helper/util.js'
 
 export default {
   name: 'AwesomeSentence',
@@ -84,36 +85,6 @@ export default {
       window.getSelection().removeAllRanges()
     },
 
-    /* ---------------------Click Event--------------------- */
-    onPreviousClick() {
-      if (!this.isCanLookBack) {
-        return this.$message({
-          type: 'info',
-          message: `错过，许是永恒，只可回首前一条`,
-        })
-      }
-      this.currentSentenceStr = this.lastSentenceStr
-      this.isCanLookBack = false
-    },
-
-    onRandomClick() {
-      this.isLoading = true
-      $apis
-        .getRandomSentence()
-        .then((result) => {
-          this.lastSentenceStr = this.currentSentenceStr
-          this.isCanLookBack = true
-          this.currentSentence = result || {}
-          this.currentSentenceStr = result.content
-        })
-        .catch((error) => {
-          this.$message.error(`${error}`)
-        })
-        .finally(() => {
-          this.isLoading = false
-        })
-    },
-
     updateSentence(index) {
       const params = {
         pageCount: index,
@@ -141,15 +112,45 @@ export default {
         })
     },
 
-    onCopy2ClipboardClick() {
-      const tempStr = marked(this.currentSentenceStr, {}) + `── 倾城之链 · 箴言锦语`
-      const content = tempStr.replace(/<[^>]*>/g, '')
-      this.$util.isIosSystem() ? this.copyToIosClipboard(content) : this.copyToClipboard(content)
-      this.$message({
-        type: 'success',
-        message: `已将此条「锦语」复制到您的剪切板`,
-      })
+    /* ---------------------Click Event--------------------- */
+    onPreviousClick() {
+      if (!this.isCanLookBack) {
+        // return this.$message({
+        //   type: 'info',
+        //   message: `错过，许是永恒，只可回首前一条`,
+        // })
+      }
+      this.currentSentenceStr = this.lastSentenceStr
+      this.isCanLookBack = false
     },
+
+    onRandomClick() {
+      this.isLoading = true
+      $apis
+        .getRandomSentence()
+        .then((result) => {
+          this.lastSentenceStr = this.currentSentenceStr
+          this.isCanLookBack = true
+          this.currentSentence = result || {}
+          this.currentSentenceStr = result.content
+        })
+        .catch((error) => {
+          this.$message.error(`${error}`)
+        })
+        .finally(() => {
+          this.isLoading = false
+        })
+    },
+
+    onCopy2ClipboardClick() {
+      const tempStr = marked(this.currentSentenceStr, {}) + `── 倾城之链 · 曼妙句子`
+      const content = tempStr.replace(/<[^>]*>/g, '')
+      $utils.isIosSystem() ? this.copyToIosClipboard(content) : this.copyToClipboard(content)
+      // this.$message({
+      //   type: 'success',
+      //   message: `已将此条「锦语」复制到您的剪切板`,
+      // })
+    }
   },
 }
 </script>
@@ -164,12 +165,10 @@ export default {
     margin: 0 auto;
     padding: 6px 10px;
     position: relative;
-    color: #444;
+    color: #444444;
     text-align: left;
     line-height: 36px;
-
-    background: #fff;
-    background: -webkit-linear-gradient(top, $border-grey 0%, $white 6%) 0 6px;
+    background: -webkit-linear-gradient(top, $border-grey 0%, transparent 6%) 0 6px;
     -webkit-background-size: 100% 36px;
     -moz-background-size: 100% 36px;
     -ms-background-size: 100% 36px;

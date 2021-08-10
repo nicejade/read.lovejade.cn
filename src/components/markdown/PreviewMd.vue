@@ -1,5 +1,5 @@
 <template>
-  <div class="markdown-body" v-html="beParsedVal" />
+  <div class="markdown-body text-lg" v-html="beParsedVal" />
 </template>
 
 <script>
