@@ -1,7 +1,9 @@
 import $ajax from './ajax.js'
 
+const baseURL = process.env.NODE_ENV === 'production' ? 'https://nicelinks.site' : 'http://localhost:4000'
+
 function requestUrl(path) {
-  return `http://localhost:4000/api/${path}`
+  return `${baseURL}/api/${path}`
 }
 
 export default {
@@ -143,6 +145,10 @@ export default {
   // -----------Sentences-----------@18-06-18
   getSentences(data) {
     return $ajax.get(requestUrl('getSentences'), data)
+  },
+
+  getSentencesById(data) {
+    return $ajax.get(requestUrl('getSentencesById'), data)
   },
 
   getSentencesCount(data) {

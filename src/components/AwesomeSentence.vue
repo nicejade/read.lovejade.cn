@@ -1,18 +1,18 @@
 <template>
-  <div id="awesome-sentence" class="awesome-sentence flex flex-col p-1 max-w-xl justify-center select-text mx-3">
-    <div class="lined-paper" v-show="currentSentenceStr">
+  <div id="awesome-sentence" class="awesome-sentence flex flex-col p-1 max-w-xl justify-center select-text mx-3 min-w-full">
+    <div class="lined-paper min-w-full" v-show="currentSentenceStr">
       <preview-md id="sentence" :value="currentSentenceStr || '曼妙句子'" />
     </div>
     <div class="flex flex-row z-10 justify-between mt-6">
-      <button @click="onPreviousClick" class="bg-gray py-2 px-8 focus:outline-none text-white font-semibold rounded-full shadow-md focus:outline-none focus:ring-2 focus:ring-opacity-75">
+      <a @click="onPreviousClick" class="button bg-gray py-2 px-8 focus:outline-none text-white font-semibold rounded-full shadow-md focus:outline-none focus:ring-2 focus:ring-opacity-75">
         回退
-      </button>
-      <button @click="onRandomClick" class="bg-gray py-2 px-8 focus:outline-none text-white font-semibold rounded-full shadow-md focus:outline-none focus:ring-2 focus:ring-opacity-75">
+      </a>
+      <a @click="onRandomClick" class="button bg-gray py-2 px-8 focus:outline-none text-white font-semibold rounded-full shadow-md focus:outline-none focus:ring-2 focus:ring-opacity-75">
         随机
-      </button>
-      <button @click="onCopy2ClipboardClick" class="bg-gray py-2 px-8 focus:outline-none text-white font-semibold rounded-full shadow-md focus:outline-none focus:ring-2 focus:ring-opacity-75">
+      </a>
+      <a @click="onCopy2ClipboardClick" class="button bg-gray py-2 px-8 focus:outline-none text-white font-semibold rounded-full shadow-md focus:outline-none focus:ring-2 focus:ring-opacity-75">
         复制
-      </button>
+      </a>
     </div>
   </div>
 </template>
@@ -30,8 +30,9 @@ export default {
     return {
       isLoading: false,
       isCanLookBack: false,
-      sentence: {},
       lastSentenceStr: '',
+      currentSentenceStr: '',
+      sentence: {},
       currentSentence: {},
     }
   },
@@ -40,10 +41,7 @@ export default {
     btnClassName() {
       const sentenceType = this.currentSentence.type
       return `${sentenceType}-colors`
-    },
-    currentSentenceStr() {
-      return this.currentSentence.content || this.sentence.content
-    },
+    }
   },
 
   components: {
@@ -51,21 +49,41 @@ export default {
   },
 
   created() {
-    $apis
-      .getSysConf()
-      .then((result) => {
-        this.sentence = result.sentence || {}
-        this.currentSentenceStr = sentence.content
-        this.lastSentenceStr = sentence.content
-      })
-      .catch((error) => {
-        console.error(`Something Error :`, error.message)
-      })
+    const id = this.$route.params.id
+    if (id) {
+      this.getSpecificSentence(id)
+    } else {
+      this.getRandomSentence()
+    }
   },
 
   mounted() {},
 
   methods: {
+    getSpecificSentence(id) {
+      $apis.getSentencesById({ id }).then(result => {
+        this.sentence = result && result[0] || {}
+        this.currentSentenceStr = this.sentence.content
+        this.lastSentenceStr = this.sentence.content
+      })
+      .catch((error) => {
+        console.error(`Something Error :`, error.message)
+      })
+    },
+
+    getRandomSentence() {
+      $apis
+      .getSysConf()
+      .then((result) => {
+        this.sentence = result.sentence || {}
+        this.currentSentenceStr = this.sentence.content
+        this.lastSentenceStr = this.sentence.content
+      })
+      .catch((error) => {
+        console.error(`Something Error :`, error.message)
+      })
+    },
+
     copyToClipboard(content) {
       const el = document.createElement('textarea')
       el.value = content
@@ -114,12 +132,8 @@ export default {
 
     /* ---------------------Click Event--------------------- */
     onPreviousClick() {
-      if (!this.isCanLookBack) {
-        // return this.$message({
-        //   type: 'info',
-        //   message: `错过，许是永恒，只可回首前一条`,
-        // })
-      }
+      if (!this.isCanLookBack) { return }
+      console.log(this.currentSentenceStr, this.lastSentenceStr)
       this.currentSentenceStr = this.lastSentenceStr
       this.isCanLookBack = false
     },
@@ -143,13 +157,10 @@ export default {
     },
 
     onCopy2ClipboardClick() {
-      const tempStr = marked(this.currentSentenceStr, {}) + `── 倾城之链 · 曼妙句子`
+      const path = `https://read.lovejade.cn/p/${this.sentence._id}`
+      const tempStr = marked(this.currentSentenceStr, {}) + `── #曼妙句子 ${path}`
       const content = tempStr.replace(/<[^>]*>/g, '')
       $utils.isIosSystem() ? this.copyToIosClipboard(content) : this.copyToClipboard(content)
-      // this.$message({
-      //   type: 'success',
-      //   message: `已将此条「锦语」复制到您的剪切板`,
-      // })
     }
   },
 }
@@ -158,8 +169,25 @@ export default {
 <style lang="scss">
 @import './../assets/styles/variables.scss';
 
+@font-face {
+  font-family: 'webfont';
+  font-display: swap;
+  src: url('//at.alicdn.com/t/webfont_tts59m8038.eot'); /* IE9*/
+  src: url('//at.alicdn.com/t/webfont_tts59m8038.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+  url('//at.alicdn.com/t/webfont_tts59m8038.woff2') format('woff2'),
+  url('//at.alicdn.com/t/webfont_tts59m8038.woff') format('woff'), /* chrome、firefox */
+  url('//at.alicdn.com/t/webfont_tts59m8038.ttf') format('truetype'), /* chrome、firefox、opera、Safari, Android, iOS 4.2+*/
+  url('//at.alicdn.com/t/webfont_tts59m8038.svg#杨任东竹石体-Bold') format('svg'); /* iOS 4.1- */
+}
+
 .awesome-sentence {
   margin: auto;
+  .button {
+    font-family: 'webfont';
+    background-color: #e2e8f066;
+    border: 1px solid #e2e8f0;
+    cursor: pointer;
+  }
   .lined-paper {
     width: 100%;
     margin: 0 auto;

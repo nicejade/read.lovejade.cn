@@ -1,9 +1,3 @@
-// import { STORAGE_PREFIX } from 'config/constant'
-
-// const getStorageName = (name = '') => {
-//   return `${STORAGE_PREFIX}-${name}`
-// }
-
 if (typeof String.prototype.startsWith !== 'function') {
   window.String.prototype.startsWith = function (prefix) {
     return this.slice(0, prefix.length) === prefix
