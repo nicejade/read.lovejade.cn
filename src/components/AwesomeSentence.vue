@@ -1,5 +1,5 @@
 <template>
-  <div id="awesome-sentence" class="awesome-sentence flex flex-col p-1 max-w-xl justify-center select-text mx-3 min-w-full">
+  <div id="awesome-sentence" class="awesome-sentence flex flex-col px-4 max-w-xl justify-center select-text mx-3 min-w-full">
     <div class="lined-paper min-w-full" v-show="currentSentenceStr">
       <preview-md id="sentence" :value="currentSentenceStr || '曼妙句子'" />
     </div>
@@ -191,12 +191,12 @@ export default {
   .lined-paper {
     width: 100%;
     margin: 0 auto;
-    padding: 6px 10px;
+    padding: 6px 0;
     position: relative;
-    color: #444444;
+    color: $black;
     text-align: left;
     line-height: 36px;
-    background: -webkit-linear-gradient(top, $border-grey 0%, transparent 6%) 0 6px;
+    background: -webkit-linear-gradient(top, $border-grey 0%, transparent 3%) 0 6px;
     -webkit-background-size: 100% 36px;
     -moz-background-size: 100% 36px;
     -ms-background-size: 100% 36px;
