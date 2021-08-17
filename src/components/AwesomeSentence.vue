@@ -23,6 +23,8 @@ import PreviewMd from './markdown/PreviewMd.vue'
 import $apis from './../helper/apis.js'
 import $utils from './../helper/util.js'
 
+const gDefaultSentence = '我走过山时，山不说话，我路过海时，海不说话，小毛驴滴滴答答，倚天剑伴我走天涯。大家都说我因为爱着杨过大侠，才在峨嵋山上出了家，其实我只是爱上了峨嵋山上的云和霞，像极了十六岁那年的烟花。'
+
 export default {
   name: 'AwesomeSentence',
 
@@ -31,8 +33,12 @@ export default {
       isLoading: false,
       isCanLookBack: false,
       lastSentenceStr: '',
-      currentSentenceStr: '',
-      sentence: {},
+      currentSentenceStr: gDefaultSentence,
+      sentence: {
+        content: gDefaultSentence,
+        type: "aestheticism",
+        _id: '5b279f0f3bd7ef3847a3fadb'
+      },
       currentSentence: {},
     }
   },
