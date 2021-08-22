@@ -28,11 +28,10 @@
 import AwesomeSentence from '../components/AwesomeSentence.vue'
 
 export default {
-  name: 'App',
+  name: 'Post',
 
   data() {
-    return {
-    }
+    return {}
   },
 
   components: {
