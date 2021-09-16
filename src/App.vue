@@ -58,6 +58,11 @@ export default {
         .then((res) => console.log(res));
     },
 
+    isVivoManufacturer(ua) {
+      let tempArr = ua.match(/(vivo|iqoo|v\d{4}(?:a|t|ba|ca|bt|ct|et|ea|ga|dt|da|a0))/i) || []
+      return tempArr.length > 1
+    },
+
     wakeUpQuickapp() {
       if (!this.isAndroidSystem()) return;
 
@@ -65,7 +70,10 @@ export default {
       const browserArr = ["ucbrowser", "mqqbrowser", "quark", "baidu"];
       const isSupportUrl = browserArr.some((elem) => {
         return ua.includes(elem);
-      });
+      }) || this.isVivoManufacturer(ua);
+      alert(ua);
+      alert(isSupportUrl);
+
       if (isSupportUrl) {
         this.wakeUpQuickappByUrl();
       } else {
