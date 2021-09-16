@@ -59,22 +59,23 @@ export default {
     },
 
     isVivoManufacturer(ua) {
-      let tempArr = ua.match(/(vivo|iqoo|v\d{4}(?:a|t|ba|ca|bt|ct|et|ea|ga|dt|da|a0))/i) || []
-      return tempArr.length > 1
+      let tempArr =
+        ua.match(/(vivo|iqoo|v\d{4}(?:a|t|ba|ca|bt|ct|et|ea|ga|dt|da|a0))/i) ||
+        [];
+      return tempArr.length > 1;
     },
 
     wakeUpQuickapp() {
       if (!this.isAndroidSystem()) return;
 
       const ua = window.navigator.userAgent.toLowerCase();
+      const isVivoDevice = this.isVivoManufacturer(ua);
       const browserArr = ["ucbrowser", "mqqbrowser", "quark", "baidu"];
       const isSupportUrl = browserArr.some((elem) => {
         return ua.includes(elem);
-      }) || this.isVivoManufacturer(ua);
-      alert(ua);
-      alert(isSupportUrl);
+      });
 
-      if (isSupportUrl) {
+      if ((isSupportUrl || isVivoDevice) && !this.isWechatBrowser()) {
         this.wakeUpQuickappByUrl();
       } else {
         this.wakeUpQuickappByDeeplink();
