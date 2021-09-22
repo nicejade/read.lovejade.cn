@@ -52,7 +52,7 @@ export default {
     wakeUpQuickappByUrl() {
       const random = Math.random();
       fetch(
-        `http://thefatherofsalmon.com/?i=com.graceful.sentences&random=${random}`
+        `http://v2.thefatherofsalmon.com/?i=com.graceful.sentences&random=${random}`
       )
         .then((res) => res.json())
         .then((res) => console.log(res));
@@ -75,10 +75,12 @@ export default {
         return ua.includes(elem);
       });
 
-      if ((isSupportUrl || isVivoDevice) && !this.isWechatBrowser()) {
-        this.wakeUpQuickappByUrl();
-      } else {
+      if (this.isWechatBrowser()) {
         this.wakeUpQuickappByDeeplink();
+      } else {
+        if (isSupportUrl || isVivoDevice) {
+          this.wakeUpQuickappByUrl();
+        }
       }
     },
   },
