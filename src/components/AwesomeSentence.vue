@@ -1,16 +1,70 @@
 <template>
-  <div id="awesome-sentence" class="awesome-sentence flex flex-col px-4 max-w-xl justify-center select-text mx-3 min-w-full">
+  <div
+    id="awesome-sentence"
+    class="
+      awesome-sentence
+      flex flex-col
+      px-4
+      max-w-xl
+      justify-center
+      select-text
+      mx-3
+      min-w-full
+    "
+  >
     <div class="lined-paper min-w-full" v-show="currentSentenceStr">
       <preview-md id="sentence" :value="currentSentenceStr || '曼妙句子'" />
     </div>
     <div class="flex flex-row z-10 justify-between mt-6">
-      <a @click="onPreviousClick" class="button bg-gray py-2 px-8 focus:outline-none text-white font-semibold rounded-full shadow-md focus:outline-none focus:ring-2 focus:ring-opacity-75">
+      <a
+        @click="onPreviousClick"
+        class="
+          button
+          bg-gray
+          py-2
+          px-8
+          focus:outline-none
+          text-white
+          font-semibold
+          rounded-full
+          shadow-md
+          focus:outline-none focus:ring-2 focus:ring-opacity-75
+        "
+      >
         回退
       </a>
-      <a @click="onRandomClick" class="button bg-gray py-2 px-8 focus:outline-none text-white font-semibold rounded-full shadow-md focus:outline-none focus:ring-2 focus:ring-opacity-75">
+      <a
+        @click="onRandomClick"
+        class="
+          button
+          bg-gray
+          py-2
+          px-8
+          focus:outline-none
+          text-white
+          font-semibold
+          rounded-full
+          shadow-md
+          focus:outline-none focus:ring-2 focus:ring-opacity-75
+        "
+      >
         随机
       </a>
-      <a @click="onCopy2ClipboardClick" class="button bg-gray py-2 px-8 focus:outline-none text-white font-semibold rounded-full shadow-md focus:outline-none focus:ring-2 focus:ring-opacity-75">
+      <a
+        @click="onCopy2ClipboardClick"
+        class="
+          button
+          bg-gray
+          py-2
+          px-8
+          focus:outline-none
+          text-white
+          font-semibold
+          rounded-full
+          shadow-md
+          focus:outline-none focus:ring-2 focus:ring-opacity-75
+        "
+      >
         复制
       </a>
     </div>
@@ -18,36 +72,37 @@
 </template>
 
 <script>
-import marked from './marked.esm.js'
-import PreviewMd from './markdown/PreviewMd.vue'
-import $apis from './../helper/apis.js'
-import $utils from './../helper/util.js'
+import marked from "./marked.esm.js";
+import PreviewMd from "./markdown/PreviewMd.vue";
+import $apis from "./../helper/apis.js";
+import $utils from "./../helper/util.js";
 
-const gDefaultSentence = '我走过山时，山不说话，我路过海时，海不说话，小毛驴滴滴答答，倚天剑伴我走天涯。大家都说我因为爱着杨过大侠，才在峨嵋山上出了家，其实我只是爱上了峨嵋山上的云和霞，像极了十六岁那年的烟花。'
+const gDefaultSentence =
+  "我走过山时，山不说话，我路过海时，海不说话，小毛驴滴滴答答，倚天剑伴我走天涯。大家都说我因为爱着杨过大侠，才在峨嵋山上出了家，其实我只是爱上了峨嵋山上的云和霞，像极了十六岁那年的烟花。";
 
 export default {
-  name: 'AwesomeSentence',
+  name: "AwesomeSentence",
 
   data() {
     return {
       isLoading: false,
       isCanLookBack: false,
-      lastSentenceStr: '',
+      lastSentenceStr: "",
       currentSentenceStr: gDefaultSentence,
       sentence: {
         content: gDefaultSentence,
         type: "aestheticism",
-        _id: '5b279f0f3bd7ef3847a3fadb'
+        _id: "5b279f0f3bd7ef3847a3fadb",
       },
       currentSentence: {},
-    }
+    };
   },
 
   computed: {
     btnClassName() {
-      const sentenceType = this.currentSentence.type
-      return `${sentenceType}-colors`
-    }
+      const sentenceType = this.currentSentence.type;
+      return `${sentenceType}-colors`;
+    },
   },
 
   components: {
@@ -55,11 +110,11 @@ export default {
   },
 
   created() {
-    const id = this.$route.params.id
+    const id = this.$route.params.id;
     if (id) {
-      this.getSpecificSentence(id)
+      this.getSpecificSentence(id);
     } else {
-      this.getRandomSentence()
+      this.getRandomSentence();
     }
   },
 
@@ -67,46 +122,73 @@ export default {
 
   methods: {
     getSpecificSentence(id) {
-      $apis.getSentencesById({ id }).then(result => {
-        this.sentence = result && result[0] || {}
-        this.currentSentenceStr = this.sentence.content
-        this.lastSentenceStr = this.sentence.content
-      })
-      .catch((error) => {
-        console.error(`Something Error :`, error.message)
-      })
+      $apis
+        .getSentencesById({ id })
+        .then((result) => {
+          this.sentence = (result && result[0]) || {};
+          this.currentSentenceStr = this.sentence.content;
+          this.lastSentenceStr = this.sentence.content;
+        })
+        .catch((error) => {
+          console.error(`Something Error :`, error.message);
+        });
     },
 
     getRandomSentence() {
       $apis
-      .getSysConf()
-      .then((result) => {
-        this.sentence = result.sentence || {}
-        this.currentSentenceStr = this.sentence.content
-        this.lastSentenceStr = this.sentence.content
-      })
-      .catch((error) => {
-        console.error(`Something Error :`, error.message)
-      })
+        .getSysConf()
+        .then((result) => {
+          this.sentence = result.sentence || {};
+          this.currentSentenceStr = this.sentence.content;
+          this.lastSentenceStr = this.sentence.content;
+        })
+        .catch((error) => {
+          console.error(`Something Error :`, error.message);
+        });
     },
 
     copyToClipboard(content) {
-      const el = document.createElement('textarea')
-      el.value = content
-      document.body.appendChild(el)
-      el.select()
-      document.execCommand('copy')
-      document.body.removeChild(el)
+      const el = document.createElement("textarea");
+      el.value = content;
+      document.body.appendChild(el);
+      el.select();
+      document.execCommand("copy");
+      document.body.removeChild(el);
     },
 
     copyToIosClipboard(content) {
-      window.getSelection().removeAllRanges()
-      const node = document.getElementById('sentence')
-      const range = document.createRange()
-      range.selectNode(node)
-      window.getSelection().addRange(range)
-      document.execCommand('copy')
-      window.getSelection().removeAllRanges()
+      let textarea;
+      let result;
+
+      try {
+        textarea = document.createElement("textarea");
+        textarea.setAttribute("readonly", true);
+        textarea.setAttribute("contenteditable", true);
+        textarea.style.position = "fixed";
+        textarea.value = content;
+        document.body.appendChild(textarea);
+
+        textarea.focus();
+        textarea.select();
+
+        const range = document.createRange();
+        range.selectNodeContents(textarea);
+
+        const sel = window.getSelection();
+        sel.removeAllRanges();
+        sel.addRange(range);
+
+        textarea.setSelectionRange(0, textarea.value.length);
+        result = document.execCommand("copy");
+      } catch (err) {
+        console.error(err);
+        result = null;
+      } finally {
+        document.body.removeChild(textarea);
+      }
+      if (!result) {
+        // manual copy fallback using prompt
+      }
     },
 
     updateSentence(index) {
@@ -115,81 +197,91 @@ export default {
         pageSize: 1,
         sortType: 1,
         active: true,
-        sortTarget: 'createTime',
-      }
+        sortTarget: "createTime",
+      };
       $apis
         .getSentences(params)
         .then((result) => {
-          if (!result || result.length === 0) return
+          if (!result || result.length === 0) return;
 
-          this.lastSentenceStr = this.currentSentenceStr
-          this.isCanLookBack = true
-          this.currentSentence = result[0] || {}
-          this.currentSentenceStr = result[0].content
+          this.lastSentenceStr = this.currentSentenceStr;
+          this.isCanLookBack = true;
+          this.currentSentence = result[0] || {};
+          this.currentSentenceStr = result[0].content;
         })
         .catch((error) => {
-          console.log(error)
-          this.$message.error(`${error}`)
+          console.log(error);
+          this.$message.error(`${error}`);
         })
         .finally(() => {
-          this.isLoading = false
-        })
+          this.isLoading = false;
+        });
     },
 
     /* ---------------------Click Event--------------------- */
     onPreviousClick() {
-      if (!this.isCanLookBack) { return }
-      console.log(this.currentSentenceStr, this.lastSentenceStr)
-      this.currentSentenceStr = this.lastSentenceStr
-      this.isCanLookBack = false
+      if (!this.isCanLookBack) {
+        return;
+      }
+      console.log(this.currentSentenceStr, this.lastSentenceStr);
+      this.currentSentenceStr = this.lastSentenceStr;
+      this.isCanLookBack = false;
     },
 
     onRandomClick() {
-      this.isLoading = true
+      this.isLoading = true;
       $apis
         .getRandomSentence()
         .then((result) => {
-          this.lastSentenceStr = this.currentSentenceStr
-          this.isCanLookBack = true
-          this.currentSentence = result || {}
-          this.currentSentenceStr = result.content
+          this.lastSentenceStr = this.currentSentenceStr;
+          this.isCanLookBack = true;
+          this.currentSentence = result || {};
+          this.currentSentenceStr = result.content;
         })
         .catch((error) => {
-          this.$message.error(`${error}`)
+          this.$message.error(`${error}`);
         })
         .finally(() => {
-          this.isLoading = false
-        })
+          this.isLoading = false;
+        });
     },
 
     onCopy2ClipboardClick() {
-      const path = `https://read.lovejade.cn/p/${this.sentence._id}`
-      const tempStr = marked(this.currentSentenceStr, {}) + `── #曼妙句子 ${path}`
-      const content = tempStr.replace(/<[^>]*>/g, '')
-      $utils.isIosSystem() ? this.copyToIosClipboard(content) : this.copyToClipboard(content)
-    }
+      const path = `https://read.lovejade.cn/p/${this.sentence._id}`;
+      const tempStr =
+        marked(this.currentSentenceStr, {}) + `── #曼妙句子 ${path}`;
+      const content = tempStr.replace(/<[^>]*>/g, "");
+      $utils.isIosSystem()
+        ? this.copyToIosClipboard(content)
+        : this.copyToClipboard(content);
+    },
   },
-}
+};
 </script>
 
 <style lang="scss">
-@import './../assets/styles/variables.scss';
+@import "./../assets/styles/variables.scss";
 
 @font-face {
-  font-family: 'webfont';
+  font-family: "webfont";
   font-display: swap;
-  src: url('//at.alicdn.com/t/webfont_tts59m8038.eot'); /* IE9*/
-  src: url('//at.alicdn.com/t/webfont_tts59m8038.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
-  url('//at.alicdn.com/t/webfont_tts59m8038.woff2') format('woff2'),
-  url('//at.alicdn.com/t/webfont_tts59m8038.woff') format('woff'), /* chrome、firefox */
-  url('//at.alicdn.com/t/webfont_tts59m8038.ttf') format('truetype'), /* chrome、firefox、opera、Safari, Android, iOS 4.2+*/
-  url('//at.alicdn.com/t/webfont_tts59m8038.svg#杨任东竹石体-Bold') format('svg'); /* iOS 4.1- */
+  src: url("//at.alicdn.com/t/webfont_tts59m8038.eot"); /* IE9*/
+  src: url("//at.alicdn.com/t/webfont_tts59m8038.eot?#iefix")
+      format("embedded-opentype"),
+    /* IE6-IE8 */ url("//at.alicdn.com/t/webfont_tts59m8038.woff2")
+      format("woff2"),
+    url("//at.alicdn.com/t/webfont_tts59m8038.woff") format("woff"),
+    /* chrome、firefox */ url("//at.alicdn.com/t/webfont_tts59m8038.ttf")
+      format("truetype"),
+    /* chrome、firefox、opera、Safari, Android, iOS 4.2+*/
+      url("//at.alicdn.com/t/webfont_tts59m8038.svg#杨任东竹石体-Bold")
+      format("svg"); /* iOS 4.1- */
 }
 
 .awesome-sentence {
   margin: auto;
   .button {
-    font-family: 'webfont';
+    font-family: "webfont";
     background-color: #e2e8f066;
     border: 1px solid #e2e8f0;
     cursor: pointer;
@@ -202,7 +294,8 @@ export default {
     color: $black;
     text-align: left;
     line-height: 36px;
-    background: -webkit-linear-gradient(top, $border-grey 0%, transparent 3%) 0 6px;
+    background: -webkit-linear-gradient(top, $border-grey 0%, transparent 3%) 0
+      6px;
     -webkit-background-size: 100% 36px;
     -moz-background-size: 100% 36px;
     -ms-background-size: 100% 36px;
