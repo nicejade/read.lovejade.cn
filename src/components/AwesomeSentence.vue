@@ -236,6 +236,7 @@ export default {
           this.lastSentenceStr = this.currentSentenceStr;
           this.isCanLookBack = true;
           this.currentSentence = result || {};
+          this.sentence = result || {};
           this.currentSentenceStr = result.content;
         })
         .catch((error) => {
