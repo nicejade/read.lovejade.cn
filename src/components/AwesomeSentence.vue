@@ -12,8 +12,10 @@
       min-w-full
     "
   >
-    <div class="lined-paper min-w-full" v-show="currentSentenceStr">
-      <preview-md id="sentence" :value="currentSentenceStr || '曼妙句子'" />
+    <div class="card">
+      <div class="lined-paper min-w-full" v-show="currentSentenceStr">
+        <preview-md id="sentence" :value="currentSentenceStr || '曼妙句子'" />
+      </div>
     </div>
     <div class="flex flex-row z-10 justify-between mt-6">
       <a
@@ -281,6 +283,14 @@ export default {
 
 .awesome-sentence {
   margin: auto;
+  .card {
+    backdrop-filter: blur(16px) saturate(180%);
+    -webkit-backdrop-filter: blur(16px) saturate(180%);
+    background-color: rgba(255, 255, 255, 0.5);
+    border-radius: 12px;
+    border: 1px solid rgba(209, 213, 219, 0.3);
+    padding: 20px 40px;
+  }
   .button {
     font-family: "webfont";
     background-color: #e2e8f066;
