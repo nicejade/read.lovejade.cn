@@ -5,7 +5,7 @@
         <div class="item">
           <img
             class="qrcode"
-            src="https://lovejade.oss-cn-shenzhen.aliyuncs.com/曼妙句子.jpg"
+            src="https://image.nicelinks.site/%20%E6%9B%BC%E5%A6%99%E5%8F%A5%E5%AD%90.jpg"
             alt="曼妙句子-公众号"
           />
           <span class="text font-medium">曼妙句子</span>
@@ -33,7 +33,7 @@
       <a
         class="link font-medium"
         target="_blank"
-        href="https://txc.qq.com/minvite.html?s=b75a9627ff"
+        href="https://support.qq.com/products/368784"
         >投稿</a
       >
     </div>

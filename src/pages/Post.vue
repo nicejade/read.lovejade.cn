@@ -154,23 +154,28 @@
       </svg>
     </div>
     <AwesomeSentence />
-    <Elevator />
+    <FriendsLink v-if="!isMobile" />
+    <Elevator v-if="!isMobile" />
   </div>
 </template>
 
 <script>
 import AwesomeSentence from "../components/AwesomeSentence.vue";
+import FriendsLink from "../components/FriendsLink.vue";
 import Elevator from "../components/Elevator.vue";
 
 export default {
   name: "Post",
 
   data() {
-    return {};
+    return {
+      isMobile: window.innerWidth <= 960,
+    };
   },
 
   components: {
     AwesomeSentence,
+    FriendsLink,
     Elevator,
   },
 
