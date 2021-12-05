@@ -20,6 +20,6 @@
     "sass": "^1.37.5",
     "sass-loader": "^12.1.0",
     "tailwindcss": "npm:@tailwindcss/postcss7-compat@^2.2.7",
-    "vite": "^1.0.0-rc.13"
+    "vite": "^2.6.14"
   }
 }
