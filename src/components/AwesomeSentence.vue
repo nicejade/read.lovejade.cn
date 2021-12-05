@@ -23,8 +23,8 @@
         class="
           button
           bg-gray
-          py-2
-          px-8
+          py-1
+          px-6
           focus:outline-none
           text-white
           font-semibold
@@ -40,8 +40,8 @@
         class="
           button
           bg-gray
-          py-2
-          px-8
+          py-1
+          px-6
           focus:outline-none
           text-white
           font-semibold
@@ -57,8 +57,8 @@
         class="
           button
           bg-gray
-          py-2
-          px-8
+          py-1
+          px-6
           focus:outline-none
           text-white
           font-semibold
