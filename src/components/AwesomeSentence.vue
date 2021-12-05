@@ -74,6 +74,7 @@
 </template>
 
 <script>
+import { Toast } from "@nutui/nutui";
 import marked from "./marked.esm.js";
 import PreviewMd from "./markdown/PreviewMd.vue";
 import $apis from "./../helper/apis.js";
@@ -223,11 +224,13 @@ export default {
     /* ---------------------Click Event--------------------- */
     onPreviousClick() {
       if (!this.isCanLookBack) {
+        Toast.warn("错过，许是永恒，只可回退到前一条");
         return;
       }
       console.log(this.currentSentenceStr, this.lastSentenceStr);
       this.currentSentenceStr = this.lastSentenceStr;
       this.isCanLookBack = false;
+      Toast.success("已成功为您回退至上一条佳句");
     },
 
     onRandomClick() {
@@ -240,6 +243,7 @@ export default {
           this.currentSentence = result || {};
           this.sentence = result || {};
           this.currentSentenceStr = result.content;
+          Toast.success("已成功为您随机更新佳句");
         })
         .catch((error) => {
           this.$message.error(`${error}`);
@@ -257,6 +261,7 @@ export default {
       $utils.isIosSystem()
         ? this.copyToIosClipboard(content)
         : this.copyToClipboard(content);
+      Toast.success("已将此条「锦语」复制到您的剪切板");
     },
   },
 };
