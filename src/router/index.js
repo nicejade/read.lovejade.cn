@@ -13,6 +13,10 @@ const router = createRouter({
     {
       path: '/p/:id',
       component: Post
+    },
+    {
+      path: "/:pathMatch(.*)*",
+      redirect: '/',
     }
   ]
 })
