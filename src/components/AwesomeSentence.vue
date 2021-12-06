@@ -13,8 +13,8 @@
     "
   >
     <div class="card">
-      <div class="lined-paper min-w-full" v-show="currentSentenceStr">
-        <preview-md id="sentence" :value="currentSentenceStr || '曼妙句子'" />
+      <div class="lined-paper min-w-full" v-show="sentence.content">
+        <preview-md id="sentence" :value="sentence.content || '曼妙句子'" />
       </div>
     </div>
     <div class="flex flex-row z-10 justify-between mt-6">
@@ -90,20 +90,18 @@ export default {
     return {
       isLoading: false,
       isCanLookBack: false,
-      lastSentenceStr: "",
-      currentSentenceStr: gDefaultSentence,
+      lastSentence: {},
       sentence: {
         content: gDefaultSentence,
         type: "aestheticism",
         _id: "5b279f0f3bd7ef3847a3fadb",
       },
-      currentSentence: {},
     };
   },
 
   computed: {
     btnClassName() {
-      const sentenceType = this.currentSentence.type;
+      const sentenceType = this.sentence.type;
       return `${sentenceType}-colors`;
     },
   },
@@ -124,13 +122,16 @@ export default {
   mounted() {},
 
   methods: {
+    deepCloneObj(obj) {
+      return JSON.parse(JSON.stringify(obj));
+    },
+
     getSpecificSentence(id) {
       $apis
         .getSentencesById({ id })
         .then((result) => {
+          this.lastSentence = this.deepCloneObj(this.sentence);
           this.sentence = (result && result[0]) || {};
-          this.currentSentenceStr = this.sentence.content;
-          this.lastSentenceStr = this.sentence.content;
         })
         .catch((error) => {
           console.error(`Something Error :`, error.message);
@@ -141,9 +142,8 @@ export default {
       $apis
         .getSysConf()
         .then((result) => {
+          this.lastSentence = this.deepCloneObj(this.sentence);
           this.sentence = result.sentence || {};
-          this.currentSentenceStr = this.sentence.content;
-          this.lastSentenceStr = this.sentence.content;
         })
         .catch((error) => {
           console.error(`Something Error :`, error.message);
@@ -206,11 +206,9 @@ export default {
         .getSentences(params)
         .then((result) => {
           if (!result || result.length === 0) return;
-
-          this.lastSentenceStr = this.currentSentenceStr;
           this.isCanLookBack = true;
-          this.currentSentence = result[0] || {};
-          this.currentSentenceStr = result[0].content;
+          this.lastSentence = this.deepCloneObj(this.sentence);
+          this.sentence = result[0] || {};
         })
         .catch((error) => {
           console.log(error);
@@ -227,9 +225,9 @@ export default {
         Toast.warn("错过，许是永恒，只可回退到前一条");
         return;
       }
-      console.log(this.currentSentenceStr, this.lastSentenceStr);
-      this.currentSentenceStr = this.lastSentenceStr;
       this.isCanLookBack = false;
+      this.sentence = this.deepCloneObj(this.lastSentence);
+      this.$router.push(`/p/${this.sentence._id}`);
       Toast.success("已成功为您回退至上一条佳句");
     },
 
@@ -238,11 +236,9 @@ export default {
       $apis
         .getRandomSentence()
         .then((result) => {
-          this.lastSentenceStr = this.currentSentenceStr;
           this.isCanLookBack = true;
-          this.currentSentence = result || {};
+          this.lastSentence = this.deepCloneObj(this.sentence);
           this.sentence = result || {};
-          this.currentSentenceStr = result.content;
           Toast.success("已成功为您随机更新佳句");
           this.$router.push(`/p/${this.sentence._id}`);
         })
@@ -257,7 +253,7 @@ export default {
     onCopy2ClipboardClick() {
       const path = `https://read.lovejade.cn/p/${this.sentence._id}`;
       const tempStr =
-        marked(this.currentSentenceStr, {}) + `── #曼妙句子 ${path}`;
+        marked(this.sentence.content, {}) + `── #曼妙句子 ${path}`;
       const content = tempStr.replace(/<[^>]*>/g, "");
       $utils.isIosSystem()
         ? this.copyToIosClipboard(content)
