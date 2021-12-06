@@ -244,6 +244,7 @@ export default {
           this.sentence = result || {};
           this.currentSentenceStr = result.content;
           Toast.success("已成功为您随机更新佳句");
+          this.$router.push(`/p/${this.sentence._id}`);
         })
         .catch((error) => {
           this.$message.error(`${error}`);
