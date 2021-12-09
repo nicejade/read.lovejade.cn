@@ -222,13 +222,19 @@ export default {
     /* ---------------------Click Event--------------------- */
     onPreviousClick() {
       if (!this.isCanLookBack) {
-        Toast.warn("错过，许是永恒，只可回退到前一条");
+        Toast.warn("错过，许是永恒，只可回退到前一条", {
+          center: false,
+          bottom: "6%",
+        });
         return;
       }
       this.isCanLookBack = false;
       this.sentence = this.deepCloneObj(this.lastSentence);
       this.$router.push(`/p/${this.sentence._id}`);
-      Toast.success("已成功为您回退至上一条佳句");
+      Toast.success("已成功为您回退至上一条佳句", {
+        center: false,
+        bottom: "6%",
+      });
     },
 
     onRandomClick() {
@@ -239,7 +245,10 @@ export default {
           this.isCanLookBack = true;
           this.lastSentence = this.deepCloneObj(this.sentence);
           this.sentence = result || {};
-          Toast.success("已成功为您随机更新佳句");
+          Toast.success("已成功为您随机更新佳句", {
+            center: false,
+            bottom: "6%",
+          });
           this.$router.push(`/p/${this.sentence._id}`);
         })
         .catch((error) => {
@@ -258,7 +267,10 @@ export default {
       $utils.isIosSystem()
         ? this.copyToIosClipboard(content)
         : this.copyToClipboard(content);
-      Toast.success("已将此条「锦语」复制到您的剪切板");
+      Toast.success("已将此条「锦语」复制到您的剪切板", {
+        center: false,
+        bottom: "6%",
+      });
     },
   },
 };
