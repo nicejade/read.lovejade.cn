@@ -1,7 +1,12 @@
 <template>
   <div class="friends-link">
     <strong>友情链接：</strong>
-    <a v-for="item in friendsArr" :key="item.link" href="" class="link">
+    <a
+      v-for="item in friendsArr"
+      :key="item.link"
+      :href="item.link"
+      class="link"
+    >
       {{ item.title }}
     </a>
   </div>
@@ -9,7 +14,7 @@
 
 <script>
 export default {
-  name: "Post",
+  name: "FriendsLink",
 
   data() {
     return {
