@@ -154,14 +154,12 @@
       </svg>
     </div>
     <AwesomeSentence />
-    <FriendsLink v-if="!isMobile" />
     <Elevator v-if="!isMobile" />
   </div>
 </template>
 
 <script>
 import AwesomeSentence from "../components/AwesomeSentence.vue";
-import FriendsLink from "../components/FriendsLink.vue";
 import Elevator from "../components/Elevator.vue";
 
 export default {
@@ -175,7 +173,6 @@ export default {
 
   components: {
     AwesomeSentence,
-    FriendsLink,
     Elevator,
   },
 

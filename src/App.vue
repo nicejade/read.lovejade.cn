@@ -78,7 +78,7 @@ export default {
       if (this.isWechatBrowser()) {
         this.wakeUpQuickappByDeeplink();
       } else {
-        if (isSupportUrl || isVivoDevice) {
+        if (isSupportUrl && isVivoDevice) {
           this.wakeUpQuickappByUrl();
         }
       }

@@ -303,7 +303,7 @@ export default {
     background-color: rgba(255, 255, 255, 0.5);
     border-radius: 12px;
     border: 1px solid rgba(209, 213, 219, 0.3);
-    padding: 20px 40px;
+    padding: 1rem 2rem;
   }
   .button {
     font-family: "webfont";
@@ -333,6 +333,14 @@ export default {
     div:last-child,
     p:last-child {
       margin: 0;
+    }
+  }
+}
+
+@media only screen and (max-width: 678px) {
+  .awesome-sentence {
+    .card {
+      padding: 1rem;
     }
   }
 }
