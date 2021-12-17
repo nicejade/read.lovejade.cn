@@ -13,7 +13,7 @@
     "
   >
     <div class="card">
-      <div class="lined-paper min-w-full" v-show="sentence.content">
+      <div class="lmin-w-full" v-show="sentence.content">
         <preview-md id="sentence" :value="sentence.content || '曼妙句子'" />
       </div>
     </div>
@@ -37,6 +37,7 @@
       </a>
       <a
         @click="onRandomClick"
+        :class="btnClassName"
         class="
           button
           bg-gray
@@ -102,6 +103,8 @@ export default {
   computed: {
     btnClassName() {
       const sentenceType = this.sentence.type;
+      const bodyNode = document.querySelector("body");
+      bodyNode.classList = `amp-mode-mouse ${sentenceType}`;
       return `${sentenceType}-colors`;
     },
   },
@@ -224,7 +227,7 @@ export default {
       if (!this.isCanLookBack) {
         Toast.warn("错过，许是永恒，只可回退到前一条", {
           center: false,
-          bottom: "6%",
+          bottom: "10%",
         });
         return;
       }
@@ -233,7 +236,7 @@ export default {
       this.$router.push(`/p/${this.sentence._id}`);
       Toast.success("已成功为您回退至上一条佳句", {
         center: false,
-        bottom: "6%",
+        bottom: "10%",
       });
     },
 
@@ -247,7 +250,7 @@ export default {
           this.sentence = result || {};
           Toast.success("已成功为您随机更新佳句", {
             center: false,
-            bottom: "6%",
+            bottom: "10%",
           });
           this.$router.push(`/p/${this.sentence._id}`);
         })
@@ -269,7 +272,7 @@ export default {
         : this.copyToClipboard(content);
       Toast.success("已将此条「锦语」复制到您的剪切板", {
         center: false,
-        bottom: "6%",
+        bottom: "10%",
       });
     },
   },
@@ -295,12 +298,16 @@ export default {
       format("svg"); /* iOS 4.1- */
 }
 
+.nut-toast-inner {
+  background-image: linear-gradient(120deg, #84fab0bb 0%, #8fd3f4cc 100%);
+}
+
 .awesome-sentence {
   margin: auto;
   .card {
     backdrop-filter: blur(16px) saturate(180%);
     -webkit-backdrop-filter: blur(16px) saturate(180%);
-    background-color: rgba(255, 255, 255, 0.5);
+    background-color: rgba(255, 255, 255, 0.618);
     border-radius: 12px;
     border: 1px solid rgba(209, 213, 219, 0.3);
     padding: 1rem 2rem;
@@ -310,30 +317,6 @@ export default {
     background-color: #e2e8f066;
     border: 1px solid #e2e8f0;
     cursor: pointer;
-  }
-  .lined-paper {
-    width: 100%;
-    margin: 0 auto;
-    padding: 6px 0;
-    position: relative;
-    color: $black;
-    text-align: left;
-    line-height: 36px;
-    background: -webkit-linear-gradient(top, $border-grey 0%, transparent 3%) 0
-      6px;
-    -webkit-background-size: 100% 36px;
-    -moz-background-size: 100% 36px;
-    -ms-background-size: 100% 36px;
-    -o-background-size: 100% 36px;
-    background-size: 100% 36px;
-    div,
-    p {
-      line-height: 36px;
-    }
-    div:last-child,
-    p:last-child {
-      margin: 0;
-    }
   }
 }
 
