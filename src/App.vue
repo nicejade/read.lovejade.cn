@@ -3,6 +3,7 @@
 </template>
 
 <script>
+import * as Sentry from "@sentry/vue"
 export default {
   name: "App",
 
@@ -76,9 +77,11 @@ export default {
       });
 
       if (this.isWechatBrowser()) {
+        Sentry.captureMessage(`Wake Up Quickapp（Wechat）, UA: ${ua}.`);
         this.wakeUpQuickappByDeeplink();
       } else {
         if (isSupportUrl && isVivoDevice) {
+          Sentry.captureMessage(`Wake Up Quickapp, UA: ${ua}.`);
           this.wakeUpQuickappByUrl();
         }
       }
