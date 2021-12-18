@@ -300,6 +300,7 @@ export default {
 
 .nut-toast-inner {
   background-image: linear-gradient(120deg, #84fab0bb 0%, #8fd3f4cc 100%);
+  max-width: 64rem;
 }
 
 .awesome-sentence {

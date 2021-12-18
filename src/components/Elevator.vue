@@ -31,7 +31,7 @@
     </div>
     <div class="recommand">
       <a
-        class="link font-medium"
+        class="link font-medium text-rainbow"
         target="_blank"
         href="https://support.qq.com/products/368784"
         >投稿</a
@@ -112,6 +112,21 @@ export default {
 <style lang="scss">
 @import "./../assets/styles/variables.scss";
 
+:root {
+  --rainbow-gradient: linear-gradient(-90deg,#adfbda 0,#35c3ff 30%,#fda399 50%,#76d880 70%,#ebf38b 90%,#adfbda 100%);
+}
+.text-rainbow {
+  background-image: var(--rainbow-gradient, #fff);
+  background-size: 100%;
+  background-repeat: repeat;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  -moz-background-clip: text;
+  -moz-text-fill-color: transparent;
+  filter: drop-shadow(0 0 2rem #000);
+  text-shadow: none!important;
+}
+
 .nut-dialog {
   width: 30rem;
   min-height: 12rem;
@@ -137,7 +152,7 @@ export default {
 
 .elevator {
   position: fixed;
-  bottom: 12 * $factor;
+  bottom: 16 * $factor;
   right: 4 * $factor;
   z-index: 100;
   .connect,
