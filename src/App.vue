@@ -3,7 +3,7 @@
 </template>
 
 <script>
-import * as Sentry from "@sentry/vue"
+import * as Sentry from "@sentry/vue";
 export default {
   name: "App",
 

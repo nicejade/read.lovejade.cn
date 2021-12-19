@@ -1,11 +1,14 @@
 import { createApp } from 'vue'
 import App from './App.vue'
-import { Toast, Icon, Dialog, Popup, OverLay } from "@nutui/nutui"
+import { Toast, Icon, Dialog, Popup, OverLay, FixedNav, Drag } from "@nutui/nutui"
 import "@nutui/nutui/dist/packages/toast/index.scss"
 import "@nutui/nutui/dist/packages/dialog/index.scss"
+import "@nutui/nutui/dist/packages/drag/index.scss"
 import "@nutui/nutui/dist/packages/button/index.scss"
+import "@nutui/nutui/dist/packages/fixednav/index.scss"
 import "@nutui/nutui/dist/packages/overLay/index.scss"
 import "@nutui/nutui/dist/packages/popup/index.scss"
+
 import './assets/styles/index.css'
 import './assets/styles/gradients.scss'
 import router from './router'
@@ -34,9 +37,12 @@ app.config.errorHandler = (err, vm, info) => {
 }
 
 app.use(router)
+app.use(Drag)
 app.use(Dialog)
+app.use(FixedNav)
 app.use(Icon)
 app.use(OverLay)
 app.use(Popup)
 app.use(Toast)
+
 app.mount('#app')

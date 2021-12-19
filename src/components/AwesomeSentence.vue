@@ -104,7 +104,7 @@ export default {
     btnClassName() {
       const sentenceType = this.sentence.type;
       const bodyNode = document.querySelector("body");
-      bodyNode.classList = `amp-mode-mouse ${sentenceType}`;
+      bodyNode.classList = `amp-mode-mouse amp-mode-touch ${sentenceType}`;
       return `${sentenceType}-colors`;
     },
   },
