@@ -11,9 +11,9 @@
   >
     <ul class="container">
       <li class="list" v-for="item in awesomeSentencesList" :key="item._id">
-        <router-link class="link" :to="'/p/' + item._id">
-          <p class="content" v-html="item.content"></p>
-        </router-link>
+        <a class="link" :href="'/p/' + item._id">
+          {{ item.content }}
+        </a>
       </li>
     </ul>
   </div>
@@ -86,7 +86,7 @@ export default {
         return {
           _id: item._id,
           type: item.type,
-          content: marked(item.content, {}),
+          content: marked(item.content, {}).replace(/<[^>]*>/g, ""),
         };
       });
     },
@@ -108,17 +108,16 @@ export default {
       margin: $factor 0;
       box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.1);
       border-radius: $factor;
+      padding: $factor;
+      background-color: $white-grey;
       .link {
         display: inline-block;
-        padding: $factor;
-        .content {
-          text-overflow: -o-ellipsis-lastline;
-          overflow: hidden;
-          text-overflow: ellipsis;
-          display: -webkit-box;
-          -webkit-line-clamp: 2;
-          -webkit-box-orient: vertical;
-        }
+        text-overflow: -o-ellipsis-lastline;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
       }
     }
   }
