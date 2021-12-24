@@ -29,7 +29,7 @@ export default {
   data() {
     return {
       isMobile: window.innerWidth <= 960,
-      pageSize: 66,
+      pageSize: 300,
       awesomeSentencesList: [
         {
           _id: "5b279f0f3bd7ef3847a3fadb",

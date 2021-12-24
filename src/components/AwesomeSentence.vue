@@ -5,6 +5,7 @@
       awesome-sentence
       flex flex-col
       px-4
+      py-4
       max-w-xl
       justify-center
       select-text
