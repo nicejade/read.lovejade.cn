@@ -96,7 +96,7 @@ export default {
 
 .elevator {
   position: fixed;
-  bottom: 16 * $factor;
+  bottom: 22 * $factor;
   right: 4 * $factor;
   z-index: 100;
   .connect,

@@ -2,7 +2,7 @@
   <div class="flex flex-row max-w-xl justify-center max-h-screen w-screen">
     <AwesomeSentence />
     <Elevator v-if="!isMobile" />
-    <nut-drag :style="{ right: '0px', bottom: '2rem' }" direction="y">
+    <nut-drag :style="{ right: '0px', bottom: '6rem' }" direction="y">
       <nut-fixednav
         v-model:visible="visible"
         un-active-text="曼妙导航"
@@ -70,3 +70,23 @@ export default {
   },
 };
 </script>
+
+<style lang="scss">
+.nut-drag {
+  .nut-fixednav {
+    height: 3rem;
+    .nut-fixednav__btn {
+      width: 6rem;
+      .text {
+        width: 2rem;
+        line-height: 1rem;
+        font-size: 0.8rem;
+      }
+    }
+    .nut-fixednav__list {
+      font-size: 0.8rem;
+      padding-right: 6rem;
+    }
+  }
+}
+</style>
