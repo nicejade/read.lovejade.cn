@@ -36,6 +36,18 @@ app.config.errorHandler = (err, vm, info) => {
   Sentry.captureException(err)
 }
 
+router.beforeEach((to, from, next) => {
+  const description = window.$currentSentenceStr
+  if (description) {
+    const descNode = document.querySelector('meta[name="description"]')
+    descNode.setAttribute('content', description);
+
+    const tDescNode = document.querySelector('meta[name="twitter:description"]')
+    tDescNode.setAttribute('content', description);
+  }
+  next()
+})
+
 app.use(router)
 app.use(Drag)
 app.use(Dialog)

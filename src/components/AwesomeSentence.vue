@@ -130,12 +130,26 @@ export default {
       return JSON.parse(JSON.stringify(obj));
     },
 
+    updateDescMeta() {
+      const description = this.getCurrentDesc();
+      if (!description) return;
+
+      const descNode = document.querySelector('meta[name="description"]');
+      descNode.setAttribute("content", description);
+
+      const tDescNode = document.querySelector(
+        'meta[name="twitter:description"]'
+      );
+      tDescNode.setAttribute("content", description);
+    },
+
     getSpecificSentence(id) {
       $apis
         .getSentencesById({ id })
         .then((result) => {
           this.lastSentence = this.deepCloneObj(this.sentence);
           this.sentence = (result && result[0]) || {};
+          this.updateDescMeta();
         })
         .catch((error) => {
           console.error(`Something Error :`, error.message);
@@ -223,6 +237,23 @@ export default {
         });
     },
 
+    getCleanContent() {
+      let content = marked(this.sentence.content, {});
+      return content.replace(/<[^>]*>/g, "");
+    },
+
+    getCurrentDesc() {
+      let content = this.getCleanContent();
+      return content.replace("\n", "");
+    },
+
+    switchRoute() {
+      window.$currentSentenceStr = this.getCurrentDesc();
+      this.$router.push({
+        path: `/p/${this.sentence._id}`,
+      });
+    },
+
     /* ---------------------Click Event--------------------- */
     onPreviousClick() {
       if (!this.isCanLookBack) {
@@ -234,7 +265,7 @@ export default {
       }
       this.isCanLookBack = false;
       this.sentence = this.deepCloneObj(this.lastSentence);
-      this.$router.push(`/p/${this.sentence._id}`);
+      this.switchRoute();
       Toast.success("已成功为您回退至上一条佳句", {
         center: false,
         bottom: "10%",
@@ -253,7 +284,7 @@ export default {
             center: false,
             bottom: "10%",
           });
-          this.$router.push(`/p/${this.sentence._id}`);
+          this.switchRoute();
         })
         .catch((error) => {
           this.$message.error(`${error}`);
@@ -265,9 +296,7 @@ export default {
 
     onCopy2ClipboardClick() {
       const path = `https://read.lovejade.cn/p/${this.sentence._id}`;
-      const tempStr =
-        marked(this.sentence.content, {}) + `── #曼妙句子 ${path}`;
-      const content = tempStr.replace(/<[^>]*>/g, "");
+      const content = this.getCleanContent() + `── #曼妙句子 ${path}`;
       $utils.isIosSystem()
         ? this.copyToIosClipboard(content)
         : this.copyToClipboard(content);
