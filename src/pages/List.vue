@@ -1,16 +1,9 @@
 <template>
   <div
-    class="
-      list-wrapper
-      flex flex-row
-      max-w-xl
-      justify-center
-      max-h-screen
-      w-screen
-    "
+    class="list-wrapper flex flex-row max-w-xl justify-center max-h-screen w-screen"
   >
     <ul class="container">
-      <li class="list" v-for="item in awesomeSentencesList" :key="item._id">
+      <li class="list" v-for="item in sentencesArr" :key="item._id">
         <a class="link" :href="'/p/' + item._id">
           {{ item.content }}
         </a>
@@ -20,76 +13,29 @@
 </template>
 
 <script>
-import $apis from "./../helper/apis.js";
-import marked from "./../components/marked.esm.js";
+import { onBeforeMount, onMounted, nextTick } from "vue";
+import getSentences from "./getSentences";
 
 export default {
-  name: "List",
+  setup() {
+    const pageSize = 300;
+    const { sentencesArr, loading, error, request, updateBgColor } =
+      getSentences(pageSize);
 
-  data() {
-    return {
-      isMobile: window.innerWidth <= 960,
-      pageSize: 300,
-      awesomeSentencesList: [
-        {
-          _id: "5b279f0f3bd7ef3847a3fadb",
-          content:
-            "我走过山时，山不说话，我路过海时，海不说话，小毛驴滴滴答答，倚天剑伴我走天涯。大家都说我因为爱着杨过大侠，才在峨嵋山上出了家，其实我只是爱上了峨嵋山上的云和霞，像极了十六岁那年的烟花。",
-          type: "aestheticism",
-          createdBy: "admin",
-          modifyTime: "2018-06-18T11:58:03.164Z",
-          createTime: "2018-06-18T11:58:03.164Z",
-          active: true,
-          __v: 0,
-        },
-      ],
-    };
-  },
-
-  components: {},
-
-  created() {
-    this.requestSentencesList();
-  },
-
-  mounted() {
-    this.$nextTick(() => {
-      this.updateBodyBackgroundColor();
+    onBeforeMount(() => {
+      request();
     });
-  },
 
-  methods: {
-    updateBodyBackgroundColor() {
-      const bodyNode = document.querySelector("body");
-      bodyNode.classList = `amp-mode-mouse amp-mode-touch`;
-    },
-
-    requestSentencesList() {
-      const params = {
-        pageCount: 1,
-        pageSize: this.pageSize,
-        sortType: -1,
-        sortTarget: "createTime",
-        active: true,
-      };
-      $apis
-        .getSentences(params)
-        .then((result) => {
-          this.asseembleSentencesList(result);
-        })
-        .catch((error) => {})
-        .finally(() => {});
-    },
-
-    asseembleSentencesList(params) {
-      this.awesomeSentencesList = params.map((item) => {
-        return {
-          _id: item._id,
-          type: item.type,
-          content: marked(item.content, {}).replace(/<[^>]*>/g, ""),
-        };
+    onMounted(() => {
+      nextTick(() => {
+        updateBgColor();
       });
-    },
+    });
+
+    return {
+      loading,
+      sentencesArr,
+    };
   },
 };
 </script>
