@@ -1,8 +1,7 @@
 <template>
   <div class="flex flex-row max-w-xl justify-center max-h-screen w-screen">
     <AwesomeSentence />
-    <Elevator v-if="!isMobile" />
-    <nut-drag :style="{ right: '0px', bottom: '6rem' }" direction="y">
+    <nut-drag :style="{ right: '0px', bottom: '9rem' }" direction="y">
       <nut-fixednav
         v-model:visible="visible"
         un-active-text="曼妙导航"
@@ -29,7 +28,6 @@
 
 <script>
 import AwesomeSentence from "../components/AwesomeSentence.vue";
-import Elevator from "../components/Elevator.vue";
 import FriendsLink from "../components/FriendLink.vue";
 
 export default {
@@ -37,7 +35,6 @@ export default {
 
   data() {
     return {
-      isMobile: window.innerWidth <= 960,
       isOverlay: true,
       isVisibleGialog: false,
       visible: false,
@@ -56,7 +53,6 @@ export default {
 
   components: {
     AwesomeSentence,
-    Elevator,
     FriendsLink,
   },
 
@@ -80,11 +76,11 @@ export default {
       .text {
         width: 2rem;
         line-height: 1rem;
-        font-size: 0.8rem;
+        font-size: 1rem;
       }
     }
     .nut-fixednav__list {
-      font-size: 0.8rem;
+      font-size: 1rem;
       padding-right: 6rem;
     }
   }

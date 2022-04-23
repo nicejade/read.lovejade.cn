@@ -95,10 +95,10 @@ export default {
 }
 
 .elevator {
-  position: fixed;
-  bottom: 22 * $factor;
+  position: absolute;
   right: 4 * $factor;
   z-index: 100;
+  height: 12rem;
   .connect,
   .recommand {
     width: 6 * $factor;

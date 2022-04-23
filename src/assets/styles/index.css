@@ -15,5 +15,7 @@
   html,
   body {
     font-size: 18px;
+    height: 100vh;
+    overflow: scroll !important;
   }
 }

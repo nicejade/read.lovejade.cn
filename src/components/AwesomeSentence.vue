@@ -1,17 +1,7 @@
 <template>
   <div
     id="awesome-sentence"
-    class="
-      awesome-sentence
-      flex flex-col
-      px-4
-      py-4
-      max-w-xl
-      justify-center
-      select-text
-      mx-3
-      min-w-full
-    "
+    class="awesome-sentence flex flex-col px-4 py-4 max-w-xl justify-center select-text mx-3 min-w-full"
   >
     <div class="card">
       <div class="lmin-w-full" v-show="sentence.content">
@@ -21,53 +11,20 @@
     <div class="flex flex-row z-10 justify-between mt-6">
       <a
         @click="onPreviousClick"
-        class="
-          button
-          bg-gray
-          py-1
-          px-6
-          focus:outline-none
-          text-white
-          font-semibold
-          rounded-full
-          shadow-md
-          focus:outline-none focus:ring-2 focus:ring-opacity-75
-        "
+        class="button bg-gray py-1 px-6 focus:outline-none text-white font-semibold rounded-full shadow-md focus:outline-none focus:ring-2 focus:ring-opacity-75"
       >
         回退
       </a>
       <a
         @click="onRandomClick"
         :class="btnClassName"
-        class="
-          button
-          bg-gray
-          py-1
-          px-6
-          focus:outline-none
-          text-white
-          font-semibold
-          rounded-full
-          shadow-md
-          focus:outline-none focus:ring-2 focus:ring-opacity-75
-        "
+        class="button bg-gray py-1 px-6 focus:outline-none text-white font-semibold rounded-full shadow-md focus:outline-none focus:ring-2 focus:ring-opacity-75"
       >
         随机
       </a>
       <a
         @click="onCopy2ClipboardClick"
-        class="
-          button
-          bg-gray
-          py-1
-          px-6
-          focus:outline-none
-          text-white
-          font-semibold
-          rounded-full
-          shadow-md
-          focus:outline-none focus:ring-2 focus:ring-opacity-75
-        "
+        class="button bg-gray py-1 px-6 focus:outline-none text-white font-semibold rounded-full shadow-md focus:outline-none focus:ring-2 focus:ring-opacity-75"
       >
         复制
       </a>
@@ -256,6 +213,10 @@ export default {
 
     /* ---------------------Click Event--------------------- */
     onPreviousClick() {
+      window.gtag("event", "btn_previous_click", {
+        id: this.sentence._id,
+      });
+
       if (!this.isCanLookBack) {
         Toast.warn("错过，许是永恒，只可回退到前一条", {
           center: false,
@@ -273,6 +234,10 @@ export default {
     },
 
     onRandomClick() {
+      window.gtag("event", "btn_random_click", {
+        id: this.sentence._id,
+      });
+
       this.isLoading = true;
       $apis
         .getRandomSentence()
@@ -295,6 +260,10 @@ export default {
     },
 
     onCopy2ClipboardClick() {
+      window.gtag("event", "btn_copy_click", {
+        id: this.sentence._id,
+      });
+
       const path = `https://read.lovejade.cn/p/${this.sentence._id}`;
       const content = this.getCleanContent() + `── #曼妙句子 ${path}`;
       $utils.isIosSystem()

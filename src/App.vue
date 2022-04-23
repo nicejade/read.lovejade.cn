@@ -1,17 +1,25 @@
 <template>
-  <router-view></router-view>
+  <div class="main">
+    <router-view></router-view>
+    <Elevator v-if="!isMobile" />
+  </div>
 </template>
 
 <script>
+import Elevator from "./components/Elevator.vue";
 // import * as Sentry from "@sentry/vue";
 export default {
   name: "App",
 
   data() {
-    return {};
+    return {
+      isMobile: window.innerWidth <= 960,
+    };
   },
 
-  components: {},
+  components: {
+    Elevator,
+  },
 
   created() {},
 
@@ -93,6 +101,13 @@ export default {
 <style>
 #app {
   width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.main {
   height: 100vh;
   display: flex;
   flex-direction: column;

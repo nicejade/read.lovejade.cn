@@ -82,9 +82,16 @@ export default {
 
 .nut-dialog {
   width: 100%;
-  max-width: 30rem;
-  min-height: 12rem;
+  max-width: 36rem;
+  min-height: 18rem;
   padding: 2rem 3rem;
+  .nut-dialog__header {
+    font-size: 1.8 * $factor;
+    font-weight: bold;
+  }
+  .nut-button {
+    font-size: 1.6 * $factor;
+  }
   .content {
     display: flex;
     flex-direction: row;
@@ -96,7 +103,7 @@ export default {
     .link {
       display: inline-block;
       width: 50%;
-      font-size: 14px;
+      font-size: 1.6 * $factor;
       color: $brand;
       height: 2rem;
       line-height: 2rem;
