@@ -3,7 +3,7 @@
     id="awesome-sentence"
     class="awesome-sentence flex flex-col px-4 py-4 max-w-xl justify-center select-text mx-3 min-w-full"
   >
-    <div class="card">
+    <div class="card" :class="awesomeCardBg">
       <div class="lmin-w-full" v-show="sentence.content">
         <preview-md id="sentence" :value="sentence.content || '曼妙句子'" />
       </div>
@@ -17,7 +17,6 @@
       </a>
       <a
         @click="onRandomClick"
-        :class="btnClassName"
         class="button bg-gray py-1 px-6 focus:outline-none text-white font-semibold rounded-full shadow-md focus:outline-none focus:ring-2 focus:ring-opacity-75"
       >
         随机
@@ -59,11 +58,8 @@ export default {
   },
 
   computed: {
-    btnClassName() {
-      const sentenceType = this.sentence.type;
-      const bodyNode = document.querySelector("body");
-      bodyNode.classList = `amp-mode-mouse amp-mode-touch ${sentenceType}`;
-      return `${sentenceType}-colors`;
+    awesomeCardBg() {
+      return this.sentence.type;
     },
   },
 
