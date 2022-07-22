@@ -78,6 +78,12 @@ export default {
 
   mounted() {},
 
+  watch: {
+    sentence(objs) {
+      this.addCanonicalForSEO(objs)
+    }
+  },
+
   methods: {
     deepCloneObj(obj) {
       return JSON.parse(JSON.stringify(obj));
@@ -94,6 +100,14 @@ export default {
         'meta[name="twitter:description"]'
       );
       tDescNode.setAttribute("content", description);
+    },
+
+    addCanonicalForSEO(sentence) {
+      let link = document.querySelector("link[rel='canonical']")
+      link = !!link ? link : document.createElement('link')
+      link.setAttribute('rel', 'canonical')
+      link.setAttribute('href', `https://read.lovejade.cn/p/${sentence._id}`)
+      document.head.appendChild(link)
     },
 
     getSpecificSentence(id) {
