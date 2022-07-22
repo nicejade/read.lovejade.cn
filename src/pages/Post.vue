@@ -38,16 +38,7 @@ export default {
       isOverlay: true,
       isVisibleGialog: false,
       visible: false,
-      navList: [
-        {
-          id: 1,
-          text: "列表",
-        },
-        {
-          id: 2,
-          text: "友链",
-        },
-      ],
+      isMobile: window.innerWidth <= 960
     };
   },
 
@@ -72,16 +63,17 @@ export default {
   .nut-fixednav {
     height: 3rem;
     .nut-fixednav__btn {
-      width: 6rem;
+      width: 7rem;
+      padding-left: 0;
       .text {
         width: 2rem;
         line-height: 1rem;
-        font-size: 1rem;
+        font-size: .9rem;
       }
     }
     .nut-fixednav__list {
       font-size: 1rem;
-      padding-right: 6rem;
+      padding-right: 7rem;
     }
   }
 }
