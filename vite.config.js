@@ -25,7 +25,7 @@ export default {
   },
 
   server: {
-    port: 5000,
+    port: 9527,
     open: true,
     base: "./ ",
     proxy: {
