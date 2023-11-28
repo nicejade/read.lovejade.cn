@@ -1,7 +1,7 @@
 <template>
-  <div class="flex flex-row justify-center w-full max-w-xl my-6">
+  <div class="flex flex-row justify-center w-full max-w-xl my-6 md:my-2">
     <AwesomeSentence />
-    <nut-drag class="hidden md:block" :style="{ right: '0px', bottom: '9rem' }" direction="y">
+    <nut-drag class="hidden md:block" :style="{ right: '0px', bottom: '3rem' }" direction="y">
       <nut-fixednav v-model:visible="visible" un-active-text="曼妙导航" :overlay="isOverlay">
         <template v-slot:list>
           <ul class="nut-fixednav__list">

@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-row justify-center w-full max-w-xl max-h-screen my-6">
+  <div class="flex flex-row justify-center w-full max-w-xl max-h-screen px-4 my-6 md:my-2">
     <ul class="container">
       <li class="p-4 list" v-for="item in sentencesArr" :key="item._id">
         <a class="link" :href="'/p/' + item._id">

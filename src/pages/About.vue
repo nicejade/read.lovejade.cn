@@ -1,6 +1,6 @@
 <template>
-  <div class="flex flex-row justify-center w-full max-w-xl">
-    <div class="my-10 markdown-body text-brand" v-html="aboutHtml"></div>
+  <div class="flex flex-row justify-center w-full max-w-xl px-4">
+    <div class="my-10 md:my-4 markdown-body text-brand" v-html="aboutHtml"></div>
   </div>
 </template>
 
