@@ -1,19 +1,36 @@
 {
-    "name": "\u66fc\u5999\u53e5\u5b50",
-    "short_name": "\u66fc\u5999\u53e5\u5b50",
-    "icons": [
-        {
-            "src": "/android-chrome-192x192.png",
-            "sizes": "192x192",
-            "type": "image/png"
-        },
-        {
-            "src": "/android-chrome-256x256.png",
-            "sizes": "256x256",
-            "type": "image/png"
-        }
-    ],
-    "theme_color": "#ffffff",
-    "background_color": "#ffffff",
-    "display": "standalone"
+	"name": "曼妙句子",
+	"short_name": "曼妙句子",
+	"description": "人生最曼妙的风景，是内心的淡定与从容。曼妙句子，旨在云集世间摇曳生姿的文字，或情感、或唯美、或修身、或励志、或哲学、或娱乐，拳拳真情，精心择选，总有荡漾你心的那一言。",
+	"start_url": "/",
+	"display": "standalone",
+	"background_color": "#ffffff",
+	"theme_color": "#ffffff",
+	"display_override": ["window-controls-overlay", "standalone"],
+	"screenshots": [
+		{
+			"src": "/screenshots/desktop.png",
+			"sizes": "1200x676",
+			"type": "image/png",
+			"form_factor": "wide",
+			"label": "桌面端主页面"
+		}
+	],
+	"icons": [
+		{
+			"src": "/apple-touch-icon.png",
+			"sizes": "180x180",
+			"type": "image/png"
+		},
+		{
+			"src": "/android-chrome-192x192.png",
+			"sizes": "192x192",
+			"type": "image/png"
+		},
+		{
+			"src": "/android-chrome-512x512.png",
+			"sizes": "512x512",
+			"type": "image/png"
+		}
+	]
 }

@@ -14,6 +14,8 @@
   <meta name="twitter:title" content="曼妙句子" />
   <meta name="twitter:description"
     content="人生最曼妙的风景，是内心的淡定与从容。曼妙句子，旨在云集世间摇曳生姿的文字，或情感、或唯美、或修身、或励志、或哲学、或娱乐，拳拳真情，精心择选，总有荡漾你心的那一言。" />
+  <meta name="twitter:image" content="https://read.lovejade.cn/screenshots/desktop.png" />
+  <meta name="twitter:image:alt" content="曼妙句子 - 精选摇曳生姿的文字" />
   <!-- PWA conf -->
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
@@ -124,6 +126,17 @@
       "inLanguage": "zh-CN"
     }
     </script>
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/sw.js')
+          .then(registration => { })
+          .catch(error => {
+            console.log('ServiceWorker registration failed: ', err)
+          })
+      })
+    }
+  </script>
 </head>
 
 <body>

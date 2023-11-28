@@ -2,7 +2,7 @@ const axios = require('axios')
 
 const getAllSentences = () => {
   return new Promise((resolve, reject) => {
-    const requestUrl = 'https://nicelinks.site/api/getSentences'
+    const requestUrl = 'https://site.lovejade.cn/api/getSentences'
     const params = {
       pageCount: 1,
       pageSize: 999,
