@@ -8,7 +8,7 @@
 			</RouterLink>
 			<div class="flex flex-row items-center justify-center space-x-6">
 				<RouterLink @click="$reortGaEvent('list', 'header')" to="/list" class="text-base">列表</RouterLink>
-				<!-- <RouterLink to="https://forum.lovejade.cn/d/111" class="text-base">关于</RouterLink> -->
+				<RouterLink @click="$reortGaEvent('about', 'header')" to="/about" class="text-base">关于</RouterLink>
 				<a target="_blank" rel="noreferrer" class="mx-3 text-gray-400 cursor-pointer hover:text-amber-500"
 					href="https://github.com/nicejade/read.lovejade.cn" @click="$reortGaEvent('github-repository', 'header')">
 					<svg viewBox="0 0 16 16" fill="#131313" class="w-6 h-6">
