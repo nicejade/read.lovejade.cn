@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-row justify-center w-full max-w-xl max-h-screen">
+  <div class="flex flex-row justify-center w-full max-w-xl">
     <div class="my-10 markdown-body text-brand" v-html="aboutHtml"></div>
   </div>
 </template>

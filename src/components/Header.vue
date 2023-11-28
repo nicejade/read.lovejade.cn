@@ -1,6 +1,6 @@
 <template>
-	<header class="flex flex-row items-center w-full h-16 bg-white shadow-md">
-		<nav class="flex items-center justify-between w-full h-full px-6">
+	<header class="flex flex-row items-center w-full bg-white shadow-md">
+		<nav class="flex items-center justify-between w-full h-full px-6 py-4">
 			<RouterLink class="inline-flex flex-row items-center space-x-2 link"
 				@click.native="$reortGaEvent('title', 'header')" to="/">
 				<img src="./../assets/images/logo.png" alt="曼妙句子" width="40" height="40" />
