@@ -16,6 +16,13 @@ import * as Sentry from "@sentry/vue"
 import { Integrations } from "@sentry/tracing"
 
 const app = createApp(App)
+app.config.globalProperties.$reortGaEvent = (action, category, label) => {
+	const gtag = window.gtag || (() => {})
+	gtag('event', action, {
+		event_category: category,
+		event_label: label || action,
+	})
+}
 
 Sentry.init({
   app,

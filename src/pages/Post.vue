@@ -1,12 +1,8 @@
 <template>
-  <div class="flex flex-row max-w-xl justify-center max-h-screen w-screen">
+  <div class="flex flex-row justify-center w-screen max-w-xl max-h-screen my-6">
     <AwesomeSentence />
-    <nut-drag :style="{ right: '0px', bottom: '9rem' }" direction="y">
-      <nut-fixednav
-        v-model:visible="visible"
-        un-active-text="曼妙导航"
-        :overlay="isOverlay"
-      >
+    <nut-drag class="hidden md:block" :style="{ right: '0px', bottom: '9rem' }" direction="y">
+      <nut-fixednav v-model:visible="visible" un-active-text="曼妙导航" :overlay="isOverlay">
         <template v-slot:list>
           <ul class="nut-fixednav__list">
             <li class="nut-fixednav__list-item">
@@ -27,8 +23,8 @@
 </template>
 
 <script>
-import AwesomeSentence from "../components/AwesomeSentence.vue";
-import FriendsLink from "../components/FriendLink.vue";
+import AwesomeSentence from "../components/AwesomeSentence.vue"
+import FriendsLink from "../components/FriendLink.vue"
 
 export default {
   name: "Post",
@@ -39,7 +35,7 @@ export default {
       isVisibleGialog: false,
       visible: false,
       isMobile: window.innerWidth <= 960
-    };
+    }
   },
 
   components: {
@@ -47,30 +43,33 @@ export default {
     FriendsLink,
   },
 
-  created() {},
+  created() { },
 
   methods: {
     onFriendsClick() {
-      this.isVisibleGialog = true;
-      this.isOverlay = false;
+      this.isVisibleGialog = true
+      this.isOverlay = false
     },
   },
-};
+}
 </script>
 
 <style lang="scss">
 .nut-drag {
   .nut-fixednav {
     height: 3rem;
+
     .nut-fixednav__btn {
       width: 7rem;
       padding-left: 0;
+
       .text {
         width: 2rem;
         line-height: 1rem;
         font-size: .9rem;
       }
     }
+
     .nut-fixednav__list {
       font-size: 1rem;
       padding-right: 7rem;

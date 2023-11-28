@@ -1,12 +1,14 @@
 <template>
-  <div class="main">
+  <div class="relative flex flex-col items-center justify-start w-full h-full">
+    <Header />
     <router-view></router-view>
     <Elevator v-if="!isMobile" />
   </div>
 </template>
 
 <script>
-import Elevator from "./components/Elevator.vue";
+import Elevator from "./components/Elevator.vue"
+import Header from './components/Header.vue'
 // import * as Sentry from "@sentry/vue";
 export default {
   name: "App",
@@ -14,14 +16,15 @@ export default {
   data() {
     return {
       isMobile: window.innerWidth <= 960,
-    };
+    }
   },
 
   components: {
     Elevator,
+    Header
   },
 
-  created() {},
+  created() { },
 
   mounted() {
     // this.wakeUpQuickapp();
@@ -95,19 +98,12 @@ export default {
   //     }
   //   },
   // },
-};
+}
 </script>
 
 <style>
 #app {
   width: 100vw;
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-.main {
   height: 100vh;
   display: flex;
   flex-direction: column;
