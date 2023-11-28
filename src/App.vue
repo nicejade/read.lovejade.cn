@@ -1,5 +1,5 @@
 <template>
-  <div class="relative flex flex-col items-center justify-start w-full h-full">
+  <div class="relative flex flex-col items-center justify-start w-full h-screen">
     <Header />
     <router-view></router-view>
     <Elevator v-if="!isMobile" />

@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-row justify-center w-screen max-w-xl max-h-screen my-6">
+  <div class="flex flex-row justify-center w-full max-w-xl my-6">
     <AwesomeSentence />
     <nut-drag class="hidden md:block" :style="{ right: '0px', bottom: '9rem' }" direction="y">
       <nut-fixednav v-model:visible="visible" un-active-text="曼妙导航" :overlay="isOverlay">

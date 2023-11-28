@@ -1,10 +1,14 @@
 {
   "name": "read.lovejade.cn",
-  "version": "0.1.2",
+  "version": "0.3.0",
   "scripts": {
     "start": "npm run dev",
     "dev": "vite",
-    "build": "vite build"
+    "build": "vite build",
+    "gen-sitemap": "node scripts/gen-sitemap.js",
+    "format-sitemap": "xmllint --format public/sitemap.xml -o public/sitemap.xml",
+    "push": "./scripts/push2server.sh",
+    "deploy": "yarn build && yarn gen-sitemap && yarn format-sitemap && yarn push"
   },
   "dependencies": {
     "@nutui/nutui": "^3.1.12",

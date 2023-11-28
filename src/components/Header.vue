@@ -1,6 +1,6 @@
 <template>
-	<header class="top-0 left-0 flex flex-row items-center w-screen h-16 bg-white shadow-md">
-		<nav class="flex items-center justify-between w-full px-6 py-2">
+	<header class="flex flex-row items-center w-full h-16 bg-white shadow-md">
+		<nav class="flex items-center justify-between w-full h-full px-6">
 			<RouterLink class="inline-flex flex-row items-center space-x-2 link"
 				@click.native="$reortGaEvent('title', 'header')" to="/">
 				<img src="./../assets/images/logo.png" alt="曼妙句子" width="40" height="40" />
@@ -8,7 +8,7 @@
 			</RouterLink>
 			<div class="flex flex-row items-center justify-center space-x-6">
 				<RouterLink @click="$reortGaEvent('list', 'header')" to="/list" class="text-base">列表</RouterLink>
-				<!-- <RouterLink to="https://forum.lovejade.cn/d/111" class="text-base">关于</RouterLink> -->
+				<RouterLink @click="$reortGaEvent('about', 'header')" to="/about" class="text-base">关于</RouterLink>
 				<a target="_blank" rel="noreferrer" class="mx-3 text-gray-400 cursor-pointer hover:text-amber-500"
 					href="https://github.com/nicejade/read.lovejade.cn" @click="$reortGaEvent('github-repository', 'header')">
 					<svg viewBox="0 0 16 16" fill="#131313" class="w-6 h-6">
