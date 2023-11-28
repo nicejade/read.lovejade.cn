@@ -52,6 +52,18 @@ router.beforeEach((to, from, next) => {
     const tDescNode = document.querySelector('meta[name="twitter:description"]')
     tDescNode.setAttribute('content', description);
   }
+
+  const canonicalUrl = `https://read.lovejade.cn/p/${to.path}`
+  const canonicalNode = document.querySelector('link[rel="canonical"]')
+  if (canonicalNode) {
+    canonicalNode.setAttribute('href', canonicalUrl)
+  } else {
+    const link = document.createElement('link')
+    link.setAttribute('rel', 'canonical')
+    link.setAttribute('href', canonicalUrl)
+    document.head.appendChild(link)
+  }
+  
   next()
 })
 
