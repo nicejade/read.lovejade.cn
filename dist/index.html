@@ -54,25 +54,52 @@
       custom-element="amp-auto-ads"
       src="https://cdn.ampproject.org/v0/amp-auto-ads-0.1.js"
     ></script>
-    
+    <style amp-boilerplate>/* purgecss start ignore */
+
+body {
+  -webkit-animation: -amp-start 8s steps(1, end) 0s 1 normal both;
+  animation: -amp-start 8s steps(1, end) 0s 1 normal both;
+}
+
+@-webkit-keyframes -amp-start {
+  from {
+    visibility: hidden;
+  }
+
+  to {
+    visibility: visible;
+  }
+}
+
+@keyframes -amp-start {
+  from {
+    visibility: hidden;
+  }
+
+  to {
+    visibility: visible;
+  }
+}
+
+/* purgecss end ignore */
+    </style>
     <noscript
-      ><style amp-boilerplate>
-        body {
-          -webkit-animation: none;
-          -moz-animation: none;
-          -ms-animation: none;
-          animation: none;
-        }
+      ><style amp-boilerplate>/* purgecss start ignore */
+
+body {
+  -webkit-animation: none;
+  animation: none;
+}
+
+/* purgecss end ignore */
       </style>
     </noscript>
-    <script type="module" crossorigin src="/assets/index.e4221c8b.js"></script>
-    <link rel="modulepreload" href="/assets/vendor.6b4d3df1.js">
-    <link rel="stylesheet" href="/assets/index.3bcbfeae.css">
+    <script type="module" crossorigin src="/assets/index-QZTz_Kcv.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/index-3EE00s8_.css">
   </head>
   <body>
     <amp-auto-ads type="adsense" data-ad-client="ca-pub-8586652723015758">
     </amp-auto-ads>
     <div id="app"></div>
-    
   </body>
 </html>
