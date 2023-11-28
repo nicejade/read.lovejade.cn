@@ -1,8 +1,7 @@
 const utils = require('./utils')
 const fs = require('fs')
 
-const sitemapTempStr = `
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+const sitemapTempStr = `<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url><loc>https://read.lovejade.cn/</loc></url>
   #PLACEHOLDER#
