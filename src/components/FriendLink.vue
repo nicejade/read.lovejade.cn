@@ -1,21 +1,9 @@
 <template>
-  <nut-dialog
-    teleport="#app"
-    title="友情链接"
-    :no-cancel-btn="true"
-    footer-direction="horizontal"
-    :close-on-click-overlay="true"
-    v-model:visible.sync="isVisibleGialog"
-  >
+  <nut-dialog teleport="#app" title="友情链接" :no-cancel-btn="true" footer-direction="horizontal"
+    :close-on-click-overlay="true" v-model:visible.sync="isVisibleGialog">
     <slot name="footer">
       <div class="content" name="footer">
-        <a
-          v-for="item in friendsArr"
-          :key="item.link"
-          :href="item.link"
-          class="link"
-          target="_blank"
-        >
+        <a v-for="item in friendsArr" :key="item.link" :href="item.link" class="link" target="_blank">
           {{ item.title }}
         </a>
       </div>
@@ -33,7 +21,7 @@ export default {
       friendsArr: [
         {
           title: "倾城之链",
-          link: "https://nicelinks.site/?ref=read.lovejade.cn",
+          link: "https://site.lovejade.cn/?ref=read.lovejade.cn",
         },
         {
           title: "清风明月阁",
@@ -56,15 +44,15 @@ export default {
           link: "https://www.lovejade.cn/?ref=read.lovejade.cn",
         },
       ],
-    };
+    }
   },
 
   watch: {
     modelValue(val) {
-      this.isVisibleGialog = val;
+      this.isVisibleGialog = val
     },
     isVisibleGialog(val) {
-      this.$emit("update:modelValue", val);
+      this.$emit("update:modelValue", val)
     },
   },
 
@@ -74,7 +62,7 @@ export default {
       default: false,
     },
   },
-};
+}
 </script>
 
 <style lang="scss">
@@ -85,17 +73,21 @@ export default {
   max-width: 36rem;
   min-height: 30rem;
   padding: 2rem 3rem;
+
   .nut-dialog__header {
     font-size: 2.4 * $factor;
     font-weight: bold;
     height: 3 * $factor;
   }
+
   .nut-button {
     font-size: 1.8 * $factor;
   }
+
   .nut-button--small {
     height: 3.6 * $factor;
   }
+
   .content {
     display: flex;
     flex-direction: row;
@@ -104,6 +96,7 @@ export default {
     flex-wrap: wrap;
     width: 100%;
     background-color: $white;
+
     .link {
       display: inline-block;
       width: 50%;

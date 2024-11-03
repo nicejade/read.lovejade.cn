@@ -3,14 +3,14 @@
     <div class="tooltip">
       <div class="pannel">
         <div class="item">
-          <img class="qrcode" src="https://image.nicelinks.site/%20%E6%9B%BC%E5%A6%99%E5%8F%A5%E5%AD%90.jpg"
+          <img class="qrcode" src="https://image.lovejade.cn/%20%E6%9B%BC%E5%A6%99%E5%8F%A5%E5%AD%90.jpg"
             alt="曼妙句子-公众号" />
           <span class="font-medium text">曼妙句子</span>
           <span class="text">微信扫码关注</span>
         </div>
         <div class="item">
           <img class="qrcode"
-            src="https://image.nicelinks.site/nicelinks-miniprogram-code.jpeg?imageView2/1/w/250/h/250/interlace/1/ignore-error/1"
+            src="https://image.lovejade.cn/nicelinks-miniprogram-code.jpeg?imageView2/1/w/250/h/250/interlace/1/ignore-error/1"
             alt="倾城之链-小程序" />
           <span class="font-medium text">倾城之链</span>
           <span class="text">微信扫码体验</span>

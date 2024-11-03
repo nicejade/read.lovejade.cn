@@ -1,6 +1,6 @@
 import $ajax from './ajax.js'
 
-const baseURL = process.env.NODE_ENV === 'production' ? 'https://nicelinks.site' : 'http://localhost:4000'
+const baseURL = 'https://site.lovejade.cn'
 
 function requestUrl(path) {
   return `${baseURL}/api/${path}`

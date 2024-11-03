@@ -257,7 +257,7 @@ export default {
   },
 
   getRedirectLink(url) {
-    return `https://nicelinks.site/redirect?url=${url}`
+    return `https://site.lovejade.cn/redirect?url=${url}`
   },
 
   openAuthorSite(p) {
