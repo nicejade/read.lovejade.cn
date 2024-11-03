@@ -4,6 +4,8 @@ const fs = require('fs')
 const sitemapTempStr = `<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url><loc>https://read.lovejade.cn/</loc></url>
+  <url><loc>https://read.lovejade.cn/list</loc></url>
+  <url><loc>https://read.lovejade.cn/about</loc></url>
   #PLACEHOLDER#
 </urlset>`
 
