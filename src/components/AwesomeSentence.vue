@@ -293,7 +293,7 @@ export default {
       })
 
       const path = `https://read.lovejade.cn/p/${this.sentence._id}`
-      const content = this.getCleanContent() + `── #曼妙句子 ${path}`
+      const content = this.getCleanContent() + `\n ${path}`
       $utils.isIosSystem()
         ? this.copyToIosClipboard(content)
         : this.copyToClipboard(content)
