@@ -3,9 +3,15 @@
     :close-on-click-overlay="true" v-model:visible.sync="isVisibleGialog">
     <slot name="footer">
       <div class="content" name="footer">
-        <a v-for="item in friendsArr" :key="item.link" :href="item.link" class="link" target="_blank">
-          {{ item.title }}
-        </a>
+        <nav aria-label="友情链接">
+          <ul>
+            <li v-for="item in friendsArr" class="link" :key="item.link + '?ref=read.lovejade.cn'">
+              <a :href="item.link" target="_blank" rel="noopener noreferrer">
+                {{ item.title }}
+              </a>
+            </li>
+          </ul>
+        </nav>
       </div>
     </slot>
   </nut-dialog>
@@ -21,27 +27,43 @@ export default {
       friendsArr: [
         {
           title: "倾城之链",
-          link: "https://site.lovejade.cn/?ref=read.lovejade.cn",
+          link: "https://site.lovejade.cn/",
         },
         {
-          title: "清风明月阁",
-          link: "https://wiki.lovejade.cn/?ref=read.lovejade.cn",
+          title: "生财有迹",
+          link: "https://fund.lovejade.cn/",
+        },
+        {
+          title: "逍遥自在轩",
+          link: "https://www.niceshare.site/",
+        },
+        {
+          title: "清风明月轩",
+          link: "https://www.thebettersites.com/",
         },
         {
           title: "晚晴幽草轩",
-          link: "https://www.jeffjade.com/?ref=read.lovejade.cn",
+          link: "https://www.jeffjade.com/",
         },
         {
           title: "天意人间舫",
-          link: "https://blog.lovejade.cn/?ref=read.lovejade.cn",
+          link: "https://blog.lovejade.cn/",
+        },
+        {
+          title: "缘知随心庭",
+          link: "https://fine.niceshare.site/",
+        },
+        {
+          title: "玉桃文飨轩",
+          link: "https://share.lovejade.cn/",
         },
         {
           title: "悠然宜想亭",
-          link: "https://forum.lovejade.cn/?ref=read.lovejade.cn",
+          link: "https://forum.lovejade.cn/",
         },
         {
           title: "幽居空谷轩",
-          link: "https://www.lovejade.cn/?ref=read.lovejade.cn",
+          link: "https://www.lovejade.cn/",
         },
       ],
     }
@@ -71,7 +93,7 @@ export default {
 .nut-dialog {
   width: 100%;
   max-width: 36rem;
-  min-height: 30rem;
+  min-height: 36rem;
   padding: 2rem 3rem;
 
   .nut-dialog__header {
@@ -105,6 +127,11 @@ export default {
       height: 2rem;
       line-height: 2rem;
       font-size: 1rem;
+
+      &:hover {
+        color: $jade;
+        font-weight: 600;
+      }
     }
   }
 }
