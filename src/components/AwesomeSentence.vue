@@ -72,7 +72,9 @@ export default {
 
   watch: {
     sentence(objs) {
+      this.updateDescMeta()
       this.addCanonicalForSEO(objs)
+      this.updateStructuredData(objs)
     }
   },
 
@@ -88,10 +90,11 @@ export default {
       const descNode = document.querySelector('meta[name="description"]')
       descNode.setAttribute("content", description)
 
-      const tDescNode = document.querySelector(
-        'meta[name="twitter:description"]'
-      )
+      const tDescNode = document.querySelector('meta[name="twitter:description"]')
       tDescNode.setAttribute("content", description)
+
+      const ogDescNode = document.querySelector('meta[property="og:description"]')
+      ogDescNode.setAttribute("content", description)
     },
 
     addCanonicalForSEO(sentence) {
@@ -102,6 +105,28 @@ export default {
       document.head.appendChild(link)
     },
 
+    updateStructuredData(sentence) {
+      const description = this.getCurrentDesc()
+      const structuredData = {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": document.title,
+        "description": description || "",
+        "url": `https://read.lovejade.cn/p/${sentence._id}`,
+        "datePublished": new Date(sentence.modifyTime).toISOString()
+      }
+
+      let scriptNode = document.querySelector('script[type="application/ld+json"]')
+      if (scriptNode) {
+        scriptNode.textContent = JSON.stringify(structuredData)
+      } else {
+        scriptNode = document.createElement('script')
+        scriptNode.setAttribute('type', 'application/ld+json')
+        scriptNode.textContent = JSON.stringify(structuredData)
+        document.head.appendChild(scriptNode)
+      }
+    },
+
     getSpecificSentence(id) {
       $apis
         .getSentencesById({ id })
@@ -109,6 +134,7 @@ export default {
           this.lastSentence = this.deepCloneObj(this.sentence)
           this.sentence = (result && result[0]) || {}
           this.updateDescMeta()
+          window.$currentSentenceStr = this.getCurrentDesc()
         })
         .catch((error) => {
           console.error(`Something Error :`, error.message)

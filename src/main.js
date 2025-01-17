@@ -43,30 +43,6 @@ app.config.errorHandler = (err, vm, info) => {
   Sentry.captureException(err)
 }
 
-router.beforeEach((to, from, next) => {
-  const description = window.$currentSentenceStr
-  if (description) {
-    const descNode = document.querySelector('meta[name="description"]')
-    descNode.setAttribute('content', description);
-
-    const tDescNode = document.querySelector('meta[name="twitter:description"]')
-    tDescNode.setAttribute('content', description);
-  }
-
-  const canonicalUrl = `https://read.lovejade.cn/p/${to.path}`
-  const canonicalNode = document.querySelector('link[rel="canonical"]')
-  if (canonicalNode) {
-    canonicalNode.setAttribute('href', canonicalUrl)
-  } else {
-    const link = document.createElement('link')
-    link.setAttribute('rel', 'canonical')
-    link.setAttribute('href', canonicalUrl)
-    document.head.appendChild(link)
-  }
-  
-  next()
-})
-
 app.use(router)
 app.use(Drag)
 app.use(Dialog)
