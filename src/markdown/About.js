@@ -27,4 +27,15 @@ export default `
 
 史蒂夫·乔布斯，在一次演讲中分享道：“**牢记自己即将死去，这是我所知道的避免陷入患得患失困境的最好方法。你已经一无所有，就没有理由不听从自己的心声**……求知若饥，虚心若愚”。你我都该相信，人生短暂，世事难艰，该尽可能听从内心的声音，珍惜时间，朝着目标，披巾斩棘，勇敢向前，不负这似水流年。
 
-最后，非常喜欢的作家王小波先生，在《一只特立独行的猪》中写过一段非常喜欢的话，在此分享，与诸君共勉：**我来这个世界不是为了结婚生子繁衍后代，而是为了看这个世界花怎么开，水怎么流，太阳何时升起，夕阳如何落下**。我活在世上，无非想明白些道理，遇见些有趣的事；生命是一场偶然，我在其中寻找因果。`
+最后，非常喜欢的作家王小波先生，在《一只特立独行的猪》中写过一段非常喜欢的话，在此分享，与诸君共勉：**我来这个世界不是为了结婚生子繁衍后代，而是为了看这个世界花怎么开，水怎么流，太阳何时升起，夕阳如何落下**。我活在世上，无非想明白些道理，遇见些有趣的事；生命是一场偶然，我在其中寻找因果。
+
+## 相关链接
+
+- [清风明月轩](https://www.thebettersites.com/?ref=github.com)
+- [逍遥自在轩](https://www.niceshare.site/?ref=github.com)
+- [晚晴幽草轩](https://www.jeffjade.com/nicelinks?ref=github.com)
+- [缘知随心庭](https://fine.niceshare.site/?ref=github.com)
+- [静轩之别苑](https://quickapp.lovejade.cn/?ref=github.com)
+- [悠然宜想亭](https://forum.lovejade.cn/?ref=github.com)
+- [SegmentFault](https://segmentfault.com/u/jeffjade)
+- [X（Twitter）](https://x.com/MarshalXuan)`

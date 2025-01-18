@@ -1,6 +1,6 @@
 <template>
-  <div class="flex flex-row justify-center w-full max-w-xl px-4">
-    <div class="my-10 md:my-4 markdown-body text-brand" v-html="aboutHtml"></div>
+  <div id="about" class="flex flex-row justify-center w-full max-w-xl px-4">
+    <div class="my-10 md:my-4 markdown text-brand" v-html="aboutHtml"></div>
   </div>
 </template>
 
@@ -12,3 +12,11 @@ let aboutHtml = marked.parse(aboutMD, {
   breaks: true,
 })
 </script>
+
+<style lang="scss">
+#about {
+  .markdown h2 {
+    font-size: 1.4rem;
+  }
+}
+</style>
